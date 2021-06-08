@@ -10,7 +10,7 @@ class Account:
         if balance < 0:
             print("INSUFFICIENT FUNDS")
         self.balance = balance
-        self.open_date = open_date
+        self.open_date = open_date                                      
 
     def withdraw(self, amount):
         if (self.balance - amount) > 0:
