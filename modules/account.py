@@ -1,21 +1,57 @@
+import csv
+import os
+my_path = os.path.abspath(os.path.dirname(__file__))
+path = os.path.join(my_path, "../support/accounts.csv")
+
 class Account:
     
-    def __init__(self, id, balance):
+    def __init__(self, id, balance, open_date, owner = None):
         self.id = id
+        if balance < 0:
+            print("INSUFFICIENT FUNDS")
         self.balance = balance
-        
+        self.open_date = open_date
+
     def withdraw(self, amount):
-        self.balance -= amount
+        if (self.balance - amount) > 0:
+            self.balance -= amount
+        else:
+            print("INSUFFICIENT FUNDS")
+            print(f"Your current balance is ${self.balance}.")
         
     def deposit(self, amount):
         self.balance += amount
-        
+
     def get_balance(self):
         return self.balance
     
+    @classmethod
+    def get_all_accounts(cls):
+        with open(path) as accounts_file:
+            reader = csv.DictReader(accounts_file)
+            accounts_list = []
+            for row in reader:
+                print(f"******* row 0: {row['id']} **********")
+            
+                new_account = Account(int(row["id"]), int(row["balance"]), row["open_date"])
+                accounts_list.append(new_account)
+        return accounts_list
 
-new_account = Account(23, 500)
-new_account.deposit(100)
-new_account.get_balance()
-    
-    
+# @classmethod
+#     def objects(cls):
+#         students = []
+#         my_path = os.path.abspath(os.path.dirname(__file__))
+#         path = os.path.join(my_path, "../data/students.csv")
+#         with open(path) as csvfile:
+#             reader = csv.DictReader(csvfile)
+#             for row in reader:
+#                 print(dict(row))
+#                 students.append(Student(**dict(row)))
+#         return students
+
+
+
+new_account = Account(23, 500, "06/08/2021")
+new_account.withdraw(600)
+print(new_account.get_balance())
+
