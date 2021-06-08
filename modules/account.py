@@ -31,27 +31,8 @@ class Account:
             reader = csv.DictReader(accounts_file)
             accounts_list = []
             for row in reader:
-                print(f"******* row 0: {row['id']} **********")
-            
                 new_account = Account(int(row["id"]), int(row["balance"]), row["open_date"])
                 accounts_list.append(new_account)
         return accounts_list
 
-# @classmethod
-#     def objects(cls):
-#         students = []
-#         my_path = os.path.abspath(os.path.dirname(__file__))
-#         path = os.path.join(my_path, "../data/students.csv")
-#         with open(path) as csvfile:
-#             reader = csv.DictReader(csvfile)
-#             for row in reader:
-#                 print(dict(row))
-#                 students.append(Student(**dict(row)))
-#         return students
-
-
-
-new_account = Account(23, 500, "06/08/2021")
-new_account.withdraw(600)
-print(new_account.get_balance())
 
