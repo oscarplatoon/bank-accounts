@@ -1,20 +1,15 @@
 import unittest
 from modules.account import Account
+from modules.bank import Bank
 
 class TestBank(unittest.TestCase):
     pass
 
 class TestAccount(unittest.TestCase):
-
-    def __init__(self, methodName: str) -> None:
-        super().__init__(methodName=methodName)
-    
     def setUp(self):
         self.test_account = Account(123, 500, "Date String")
         self.withdrawal_amount = 100
-
-    def tearDown(self):
-        del self.test_account
+        self.deposit_amount = 100
 
     def test_initial_balance(self):
 
@@ -23,6 +18,9 @@ class TestAccount(unittest.TestCase):
     def test_simple_withdraw(self):
         new_balance = self.test_account.withdraw(self.withdrawal_amount)
         self.assertEqual(new_balance, 400)
+
+    def test_account_creation_error(self):
+        self.assertEqual(Account(123,-1,"Date String"), "ArgumentError")
 
 class TestOwner(unittest.TestCase):
     pass

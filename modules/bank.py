@@ -42,9 +42,3 @@ class Bank:
                 new_account_owner = dict(row)
                 account_owners_list.append(new_account_owner)
         return account_owners_list
-
-
-test = Bank("test")
-test.assign_owner_to_account()
-# print(test.find_account_with_id(1212))
-# print(Bank.get_all_account_owners())
