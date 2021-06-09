@@ -4,17 +4,19 @@ my_path = os.path.abspath(os.path.dirname(__file__))
 path = os.path.join(my_path, "../support/accounts.csv")
 
 class Account:
+    minimum_balance = 0
     
     def __init__(self, id, balance, open_date, owner = None):
         self.id = id
-        if balance < 0:
+        if balance < self.minimum_balance:
             print("INSUFFICIENT FUNDS")
         self.balance = balance
         self.open_date = open_date                                      
 
-    def withdraw(self, amount):
-        if (self.balance - amount) > 0:
-            self.balance -= amount
+    def withdraw(self, amount, fee = 0):
+        new_balance = self.balance - amount - fee
+        if (new_balance) > self.minimum_balance:
+            self.balance = new_balance
         else:
             print("INSUFFICIENT FUNDS")
             print(f"Your current balance is ${self.balance}.")
