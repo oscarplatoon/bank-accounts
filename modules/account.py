@@ -36,12 +36,15 @@ class Account:
         return self.balance
 
     @classmethod
-    def objects(cls):
+    def all_accounts(cls):
         with open(path) as accounts_file:
             reader = csv.DictReader(accounts_file)
             accounts_list = []
             for row in reader:
-                new_account = Account(int(row["id"]), int(
-                    row["balance"]), row["open_date"])
+                new_account = cls(
+                    int(row["id"]), 
+                    int(row["balance"]), 
+                    row["open_date"]
+                    )
                 accounts_list.append(new_account)
         return accounts_list

@@ -14,12 +14,18 @@ class Owner:
         self.state = state
 
     @classmethod
-    def objects(cls):
+    def all_owners(cls):
         with open(path) as owners_file:
             reader = csv.DictReader(owners_file)
             owners_list = []
             for row in reader:
-                new_owner = Owner(int(row["id"]), row["last_name"], row["first_name"],
-                                  row["street_address"], row["city"], row["state"])
+                new_owner = cls(
+                    int(row["id"]), 
+                    row["last_name"], 
+                    row["first_name"],    
+                    row["street_address"],
+                    row["city"], 
+                    row["state"]
+                    )
                 owners_list.append(new_owner)
         return owners_list

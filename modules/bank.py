@@ -9,8 +9,8 @@ path = os.path.join(my_path, "../support/account_owners.csv")
 class Bank:
     def __init__(self, name):
         self.name = name
-        self.accounts = Account.objects()
-        self.owners = Owner.objects()
+        self.accounts = Account.all_accounts()
+        self.owners = Owner.all_owners()
 
     def __str__(self):
         return f"--------\n{self.name}\n----------"
@@ -27,7 +27,7 @@ class Bank:
                 return None
 
     def assign_owner_to_account(self):
-        account_owner_id = Bank.get_all_account_owners()
+        account_owner_id = Bank.all_account_owners()
         for value in account_owner_id:
             for account in self.accounts:
                 if int(account.id) == int(value["account_id"]):
@@ -37,7 +37,7 @@ class Bank:
                             # print(f"account owner: {account.owner.first_name}")
 
     @classmethod
-    def get_all_account_owners(cls):
+    def all_account_owners(cls):
         with open(path) as account_owners_file:
             reader = csv.DictReader(account_owners_file)
             account_owners_list = []
