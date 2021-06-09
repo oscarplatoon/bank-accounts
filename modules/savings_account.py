@@ -7,10 +7,16 @@ class SavingsAccount(Account):
         self.balance = balance
         if int(self.balance) < 10:
             raise Exception("Argument Error")
-    
-        
         super().__init__(self, id, balance, open_date)
-        #  print("stops here")
+        
+    def withdrawal_fee(self, balance, withdraw):
+        self.withdraw = withdraw()
+        if withdraw():
+            self.balance -= 2
+        
+        
+        
+       
         
         
            
