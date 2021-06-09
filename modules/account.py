@@ -37,4 +37,5 @@ class Account:
                 accounts_list.append(new_account)
         return accounts_list
 
-print(Account.withdraw(100, 500))
+a = Account()
+print(a.withdraw(100, 500))

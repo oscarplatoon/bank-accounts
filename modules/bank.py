@@ -3,8 +3,8 @@ import os
 my_path = os.path.abspath(os.path.dirname(__file__))
 path = os.path.join(my_path, "../support/account_owners.csv")
 
-from owner import Owner
-from account import Account
+from .owner import Owner
+from .account import Account
 
 class Bank:
     def __init__(self, name):

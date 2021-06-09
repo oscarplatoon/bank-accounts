@@ -1,7 +1,8 @@
-from modules.account import Account
-from modules.bank import Bank
-from modules.owner import Owner
-from modules.savings_account import SavingsAccount
+from ..modules.savings_account import SavingsAccount
+from ..modules.account import Account
+from ..modules.bank import Bank
+from ..modules.owner import Owner
+
 
 b = Bank()
 accounts = b.load_accounts()
