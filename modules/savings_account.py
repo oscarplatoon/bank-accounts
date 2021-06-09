@@ -1,10 +1,12 @@
 from .account import Account
 
 class SavingsAccount(Account):
+
+    minimum_balance = 1000
     def __init__(self, id, balance, open_date, owner):
         super().__init__(id, balance, open_date, owner=owner)
         if self.balance < 1000:
-            raise ValueError("Balance insufficient for savings account!")
+            raise ValueError(f"Balance insufficient for savings account! Requires $10.00 balance.")
 
     def withdraw(self, amount):
         if balance - 200 < 1000:
