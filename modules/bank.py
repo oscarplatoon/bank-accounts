@@ -1,5 +1,5 @@
-from account import Account
-from owner import Owner
+from .account import Account
+from .owner import Owner
 import csv
 import os
 my_path = os.path.abspath(os.path.dirname(__file__))
@@ -9,8 +9,8 @@ path = os.path.join(my_path, "../support/account_owners.csv")
 class Bank:
     def __init__(self, name):
         self.name = name
-        self.accounts = Account.get_all_accounts()
-        self.owners = Owner.get_all_owners()
+        self.accounts = Account.objects()
+        self.owners = Owner.objects()
 
     def all_accounts(self):
         return self.accounts
@@ -29,10 +29,9 @@ class Bank:
             for account in self.accounts:
                 if int(account.id) == int(value["account_id"]):
                     for owner in self.owners:
-                        print(f"owner: {owner}")
                         if owner.id == int(value["owner_id"]):
                             account.owner = owner
-                            print(f"account owner: {account.owner.first_name}")
+                            # print(f"account owner: {account.owner.first_name}")
 
     @classmethod
     def get_all_account_owners(cls):
