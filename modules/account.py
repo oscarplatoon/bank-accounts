@@ -7,7 +7,7 @@ class Account:
     def __init__(self, id, balance, open_date, owner=None):
         self.id = id
         if balance < 0:
-            raise Exception("Invalid balance")
+            raise ValueError("Invalid balance")
         self.balance = balance
         self.open_date = open_date
         self.owner = owner
@@ -15,19 +15,24 @@ class Account:
     def __str__(self):
         return (f"Account ID: {self.id}, Balance = {self.balance}")
 
+    def set_owner(self, owner):
+        if self.owner is not None:
+            raise Exception("Can not change owner of an account")
+        self.owner = owner
+
+    def get_balance(self):
+        return self.balance
+
     def withdraw(self, amount):
         if (self.balance - amount) > 0:
             self.balance -= amount
         else:
             print(f"Your current balance is ${self.balance}.")
-            raise Exception("INSUFFICIENT FUNDS")
+            raise ValueError("INSUFFICIENT FUNDS")
         return self.balance
 
     def deposit(self, amount):
         self.balance += amount
-        return self.balance
-
-    def get_balance(self):
         return self.balance
 
     @classmethod

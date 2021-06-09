@@ -1,9 +1,14 @@
 import unittest
 from modules.account import Account
 from modules.bank import Bank
+from modules.owner import Owner
 
 class TestBank(unittest.TestCase):
-    pass
+    def setUp(self):
+        self.bank = Bank("National Test Bank")
+
+    def test_str_bank(self):
+        self.assertEqual(type(self.bank.__str__()), str )
 
 class TestAccount(unittest.TestCase):
     def setUp(self):
@@ -25,9 +30,15 @@ class TestAccount(unittest.TestCase):
     # WIP Research how to test Raise Exception Syntax
     # def test_account_creation_error(self):
     #     self.failUnlessRaises(Exception("ArgumentError"), Account(123,-1,"Date String"))
+    # WIP ^^^
+    # def test_withdrawl_exception_error(self):
+    #     self.assertRaises(ValueError, self.test_account.withdraw(1000))
 
 class TestOwner(unittest.TestCase):
-    pass
+    def setUp(self):
+        self.basic_owner = Owner(123, "Test", "Fella", "123 Bad Address", "Notrealville", "QQ")
+
+
 
 if __name__ == "__main__":
     unittest.main()

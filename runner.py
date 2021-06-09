@@ -6,6 +6,6 @@ print(test_account.get_balance())
 print(test_account)
 
 try:
-    bad_account = Account(123, -500, "Date String")
+    test_account.withdraw(100)
 except Exception as e:
     print(e)

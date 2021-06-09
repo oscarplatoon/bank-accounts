@@ -12,6 +12,9 @@ class Bank:
         self.accounts = Account.objects()
         self.owners = Owner.objects()
 
+    def __str__(self):
+        return f"--------\n{self.name}\n----------"
+
     def all_accounts(self):
         return self.accounts
 
