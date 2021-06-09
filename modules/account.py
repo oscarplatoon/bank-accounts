@@ -12,12 +12,15 @@ class Account:
         self.open_date = open_date
         self.owner = owner
 
+    def __str__(self):
+        return (f"Account ID: {self.id}, Balance = {self.balance}")
+
     def withdraw(self, amount):
         if (self.balance - amount) > 0:
             self.balance -= amount
         else:
-            raise Exception("INSUFFICIENT FUNDS")
             print(f"Your current balance is ${self.balance}.")
+            raise Exception("INSUFFICIENT FUNDS")
         return self.balance
 
     def deposit(self, amount):
