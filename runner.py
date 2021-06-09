@@ -1,3 +1,4 @@
+from modules.savings_account import SavingsAccount
 from modules.account import Account
 from modules.bank import Bank
 
@@ -20,5 +21,12 @@ accounts = b.load_accounts()
 #     for a in accounts:
 #         print(a)
 
-a_found = b.find_account_by_id(15152)
-print(a_found)
+# a_found = b.find_account_by_id(15152)
+# print(a_found)
+
+try:
+    sa = SavingsAccount(1, 20, "")
+    print(sa.withdraw(5))
+    print(sa.withdraw(3))
+except Exception as e:
+    print(e)

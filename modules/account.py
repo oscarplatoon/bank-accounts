@@ -4,6 +4,9 @@ import csv
 import os
 
 class Account():
+    minimum_balance = 0
+    withdraw_fee = 0
+
     # A new account should be created with an ID and an initial balance
     # A new account cannot be created with initial negative balance - this should raise an Exception (leverage those Googling skills!)
     def __init__(self, id, balance, open_date, owner = None):
@@ -12,7 +15,7 @@ class Account():
             raise Exception("Bad account number")
         self.id = id
 
-        if balance < 0:
+        if balance < self.minimum_balance:
             raise ValueError("Invalid balance! Please set a positive amount")
         self.balance = balance
 
@@ -32,10 +35,11 @@ class Account():
 
     # Should have a withdraw method that accepts a single parameter which represents the amount of money that will be withdrawn. This method should return the updated account balance.
     def withdraw(self, amount):
-        if self.balance - amount < 0:
+        new_balance = self.balance - amount - self.withdraw_fee 
+        if new_balance < self.minimum_balance:
             raise ValueError("Can not withdraw amount specified.")
 
-        self.balance = self.balance - amount
+        self.balance = new_balance
         return self.balance
 
     # Should have a deposit method that accepts a single parameter which represents the amount of money that will be deposited. This method should return the updated account balance.
