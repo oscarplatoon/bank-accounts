@@ -22,9 +22,9 @@ class Bank:
         for account in self.accounts:
             if account.id == id:
                 return account
-            else:
-                print(f"{id} not found")
-                return None
+            
+            print(f"{id} not found")
+            return None
 
     def assign_owner_to_account(self):
         account_owner_id = Bank.all_account_owners()

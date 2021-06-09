@@ -4,13 +4,21 @@ from modules.bank import Bank
 from modules.owner import Owner
 
 class TestBank(unittest.TestCase):
+    #To Do:
+    # Test Find Account
+    # Test Owner/Account Association
+    # Test All Accounts
     def setUp(self):
         self.bank = Bank("National Test Bank")
 
     def test_str_bank(self):
-        self.assertEqual(type(self.bank.__str__()), str )
+        self.assertEqual(type(self.bank.__str__()), str)
+
 
 class TestAccount(unittest.TestCase):
+    # To Do:
+    # Test set_owner
+
     def setUp(self):
         self.test_account = Account(123, 500, "Date String")
         self.withdrawal_amount = 100
@@ -35,6 +43,8 @@ class TestAccount(unittest.TestCase):
     #     self.assertRaises(ValueError, self.test_account.withdraw(1000))
 
 class TestOwner(unittest.TestCase):
+    #To Do:
+    # Test Owner Object
     def setUp(self):
         self.basic_owner = Owner(123, "Test", "Fella", "123 Bad Address", "Notrealville", "QQ")
 
