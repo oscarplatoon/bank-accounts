@@ -6,9 +6,9 @@ path = os.path.join(my_path, "../support/accounts.csv")
 class Account:
     def __init__(self, id, balance, open_date, owner=None):
         self.id = id
-        self.balance = balance
         if balance < 0:
-            raise Exception("ArgumentError")
+            raise Exception("Invalid balance")
+        self.balance = balance
         self.open_date = open_date
         self.owner = owner
 
